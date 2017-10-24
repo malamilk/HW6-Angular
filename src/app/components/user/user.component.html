@@ -1,0 +1,70 @@
+<style>
+  body {
+    background-color: pink;
+  }
+</style>
+
+<body>
+  <br>
+  <h1 class="w3-container w3-content w3-center w3-padding-62" style="max-width:1000px">
+    <span class="w3-padding w3-pink w3-opacity-min">
+    <b>Angular Class</b>
+  </span>
+  </h1>
+  <div class="w3-content w3-padding-20" style="max-width:500px">
+    <h6>
+      <b>Name:</b> {{my_name}}</h6>
+    <h6>
+      <b>Age:</b> {{age}}</h6>
+    <h6>
+      <b>Email:</b> {{email}}</h6>
+    <h6>
+      <b>Address:</b> {{address.street}}, {{address.city}}, {{address.province}}, {{address.postcode}}</h6>
+
+    <h2>Skills</h2>
+    <form (submit)="addSkill(skill.value)">
+      <div>
+        <label for="skill">Skill: </label>
+        <input type="text" #skill placeholder="Add your skill">
+      </div>
+    </form>
+    <ul>
+      <li style="list-style-type: none" *ngFor="let skill of skills; let i = index">
+        {{i+1}}.{{skill}} <button (click)="removeSkill(skill)">X</button>
+      </li>
+    </ul>
+
+    <h2>Edit Profile</h2>
+
+    <button (click)=toggleEdit()>Edit</button>
+
+    <div *ngIf="isEditable == true">
+      <form>
+        <div>
+          <label for="name">
+       <b>Name:</b>
+     </label>
+          <input type="text" [(ngModel)]="my_name" name="name">
+        </div>
+        <div>
+          <label for="age">
+      <b>Age:</b>
+    </label>
+          <input type="text" [(ngModel)]="age" name="age">
+        </div>
+        <div>
+          <label for="email">
+      <b>Email:</b>
+    </label>
+          <input type="text" [(ngModel)]="email" name="email">
+        </div>
+
+      </form>
+    </div>
+
+    <h2>Photo List</h2>
+    <ul>
+      <li style="list-style-type: none" *ngFor="let photo of photoList;"><img src="{{photo.thumbnailUrl}}"> <br> {{photo.title}}</li>
+    </ul>
+  </div>
+</body>
